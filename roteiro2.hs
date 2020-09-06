@@ -13,6 +13,27 @@ hipotenusa a b = sqrt((a * a) + (b * b))
 distancia::(Float, Float)->(Float, Float)->Float
 distancia (x1,y1) (x2,y2) = sqrt((x2 - x1)^2 + (y2 - y1)^2)
 
+--fst (2,5)
+--O numero que vem primeiro = 2
+--snd (5, "Bom dia")
+--Uma string vem depois de um inteiro = ("Bom dia")
+--(1,1) == (1,1)
+--Tuplas iguais = True
+--(1,1) /= (1,1)
+--Tuplas nao sao diferentes = False
+--(1,1) < (1,2)
+--O segundo numero da segunda tupla eh maior que o primeiro = True
+--(2,1) < (1,2)
+--O primeiro numero da primeira tupla eh maior que o segundo = False
+--(1,2,3) < (1,2)
+--Tuplas de tamanhos diferentes = error Couldn't match type
+--"azul" < "verde"
+--A letra 'a' vem antes de 'v' = True
+--"azul" < "amarelo"
+--A letra 'z' vem depois logo eh maior que 'm' =False
+--(1,2,3) == (,,) 1 2 3
+--Diferentes formas de representar uma Tuplas = True
+
 converte::Float->(Float,Float,Float)
 converte x = (x, x * 3.96 ,x * 4.45)
 
