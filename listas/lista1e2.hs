@@ -55,7 +55,6 @@ e1::Emprestimo
 e1 = ("H123C9","BSI200945",(12,9,2009),(20,9,2009),"aberto")
 e2 = ("H214C5","BCC198674",(14,7,2019),(15,3,2019),"aberto")
 
-emDia::Emprestimo->Bool
-emDia (_,_,(d1,m1,a1),(d2,m2,a2),_)
-  |precede (d1,m1,a1) (d2,m2,a2) = True
-  |otherwise = False
+emDia::Data->Emprestimo->Bool
+emDia dataAtual (livro, aluno, dataRetirada, dataDevolucao, status) =
+  precede dataAtual dataDevo
