@@ -115,3 +115,8 @@ tamanho (x:xs) = 1 + (tamanho xs)
 uniaoNRec::[Int]->[Int]
 uniaoNRec lista = 
 
+uniaoRec [] [] = []
+uniaoRec (x:xs) (y:ys)
+  |x == y = x:uniaoRec xs ys
+  |otherwise = uniaoRec xs ys
+
