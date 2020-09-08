@@ -1,8 +1,7 @@
 -- Trabalho 1 de PF (GBC033)
--- Grupo: Mateus Carmo e Nayara
-
+-- Grupo: Mateus Carmo e Nayara Nunes
 -- Exercício 1
-triangulo :: Float -> Float -> Float -> String
+triangulo :: Float -> Float -> Float -> [Char]
 triangulo a b c
   |(a + b + c) /= 180 || a == 0 || b == 0 || c == 0 = "nao_triangulo"
   |a == b && a == c = "equilatero"
@@ -197,3 +196,30 @@ notas_troco n = [ initial:rest | initial<-disponiveis, initial <= n, rest<-notas
 
 -- Exercício 20
 
+-- gera todos os possíveis tabuleiros
+gera_tabuleiro :: Int -> Int -> [[Int]]
+gera_tabuleiro n cont
+ | n == cont = [[]]
+ | otherwise = [h:t | h<-[1..n], cont < n, t<-(gera_tabuleiro n (cont+1))]
+
+-- regras para rainhas
+rainhas_capturam :: (Int, Int) -> (Int, Int) -> Bool
+rainhas_capturam (x1,y1) (x2,y2)
+ | x1 == x2 || y1 == y2 = True
+ | abs (x1 - x2) == abs (y1 - y2) = True
+ | otherwise = False
+
+-- compara todas as rainhas em um tabuleiro
+compare_all :: [Int] -> Int -> Int -> Bool
+compare_all l i j
+ | d1 /= d2 && rainhas_capturam d1 d2 = False
+ | i == (length l) - 1 = True
+ | j == (length l) - 1 = compare_all l (i+1) (i+1)
+ | otherwise = compare_all l i (j+1)
+ where
+     d1 = (l !! i, i+1)
+     d2 = (l !! j, j+1)
+
+-- função principal
+nRainhas :: Int -> [[Int]]
+nRainhas n = [x | x<-(gera_tabuleiro n 0),  (compare_all x 0 0) == True]

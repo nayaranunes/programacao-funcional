@@ -35,10 +35,10 @@ bissexto x
 bissextos::[Int]->[Int]
 bissextos lista = [x | x <- lista, bissexto x]
 
---6--?? 
+--6--
 
 sublistas::[[Int]]->[Int]
-sublistas sublistas =  [[x] | x <- sublistas]
+sublistas lista = [x | sub<-lista, x<-sub]
 
 --7--
 
@@ -97,16 +97,15 @@ produtorio::[Int]->Int
 produtorio [x] = x
 produtorio (x:xs) = x * (produtorio xs)
 
---10--??
+--10--
 
-comprime::[[Int]]->[Int]
-comprime [[]] = [] 
-comprime [[x]] = [x]
-comprime (x:xs) = x++(comprime xs)
+sublistas::[[Int]]->[Int]
+sublistas [] = []
+sublistas (x:xs) = x ++ sublistas xs
 
 --11--
 
-tamanho::Num a=>[a]->a --polimorfica ???
+tamanho::Num a=>[a]->a --polimorfica
 tamanho [] = 0
 tamanho (x:xs) = 1 + (tamanho xs)
 
