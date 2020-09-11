@@ -99,9 +99,9 @@ produtorio (x:xs) = x * (produtorio xs)
 
 --10--
 
-sublistas::[[Int]]->[Int]
-sublistas [] = []
-sublistas (x:xs) = x ++ sublistas xs
+comprime::[[Int]]->[Int]
+comprime [] = []
+comprime (x:xs) = x ++ comprime xs
 
 --11--
 
@@ -119,3 +119,19 @@ uniaoRec (x:xs) (y:ys)
   |x == y = x:uniaoRec xs ys
   |otherwise = uniaoRec xs ys
 
+
+--12)
+membro :: Eq t => t -> [t] -> Bool
+membro n [] = False
+membro n (x:xs)
+  | n == x = True
+  | otherwise = membro n xs
+
+uniaoNRec :: [Int]->[Int]->[Int]
+uniaoNRec l1 l2 = [x | x <- l1] ++ [y | y <- l2, not (membro y l1)]
+
+--13)
+uniaoRec2 :: [Int] -> [Int] -> [Int]
+uniaoRec2 (a : as) (x : xs)
+  | (a == x) = uniaoRec2 as xs
+  | otherwise = a : as ++ x : xs

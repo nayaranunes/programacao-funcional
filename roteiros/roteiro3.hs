@@ -160,7 +160,7 @@ list :: Int -> Int -> [Int]
 list x y
     | x == y = [x]
     | x > y = []
-    | otherwise = x:(lista (x+1) y)
+    | otherwise = x:(list (x+1) y)
 
 listPar :: Int -> Int -> [Int]
 listPar x y

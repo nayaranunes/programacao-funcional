@@ -37,19 +37,24 @@ preco_onibus valor hj dob
 
 -- Exercício 4
 gera1 :: [Int]
-gera1 = [ x^2 | x<-[1..15], x >= 4, x <= 14]
+gera1 = [ x^2 | x<-[1..15], x >= 4, x <= 14, odd x]
+--gera1 = [25,49,81,121,169]
 
 gera2 :: [(Int,Int)]
 gera2 = [ (x,y) | x<-[1..15], x >= 1, x <= 4, y<-[x..2*x]]
+--gera2 = [(1,1),(1,2),(2,2),(2,3),(2,4),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(4,7),(4,8)]
 
 gera3 :: [Int]
 gera3 = [ x | y<-[1..15], y >= 10, x<-[1..y]]
+--gera3 = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10,11,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12,13,1,2,3,4,5,6,7,8,9,10,11,12,13,14,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 gera4 :: [(Int, Int)]
 gera4 = [ (x,x+1) | x<-[1..15], odd x]
+--gera4 = [(1,2),(3,4),(5,6),(7,8),(9,10),(11,12),(13,14),(15,16)]
 
 gera5 :: [Int]
 gera5 = [ x+y | (x,y)<-gera4 ]
+--gera5 = [3,7,11,15,19,23,27,31]
 
 -- Exercício 5
 -- Letra A
@@ -100,7 +105,7 @@ fizz_or_buzz i
 fizzbuzz :: Int -> [String]
 fizzbuzz n = [fizz_or_buzz i | i<-[1..n]]
 
--- Exercício 11 (?)
+-- Exercício 11 
 conta_par :: Int -> Int -> [Int] -> (Int, Int) -> (Int, Int)
 conta_par _ _ [] tupla = tupla
 conta_par a b (x:xs) (na,nb)
