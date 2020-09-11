@@ -105,7 +105,7 @@ comprime (x:xs) = x ++ comprime xs
 
 --11--
 
-tamanho::Num a=>[a]->a --polimorfica
+tamanho::Num a=>[a]->a  --polimorfica
 tamanho [] = 0
 tamanho (x:xs) = 1 + (tamanho xs)
 
