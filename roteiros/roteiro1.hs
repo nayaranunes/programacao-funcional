@@ -1,5 +1,4 @@
 main :: IO ()
-
 main = print("Available functions: double, quadruple, hypotenuse, distance")
 
 double::Float->Float
