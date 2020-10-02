@@ -139,10 +139,10 @@ rapido (p : r) = rapido [k | k <- r, k < p] ++ [p] ++ rapido [k | k <- r, k >= p
 
 -- 11 --
 
--- BubbleSort --
-
 aux_concat::t->([t],Int)->([t],Int)
 aux_concat j (l, k) = (j : l, k)
+
+-- BubbleSort --
 
 troca2::Ord t=>([t],Int)->([t],Int)
 troca2 ([x], k) = ([x], k)
