@@ -197,33 +197,35 @@ disponiveis = [1,2,5,10,20,50,100]
 
 notas_troco :: Int -> [[Int]]
 notas_troco 0 = [[]]
-notas_troco n = [ initial:rest | initial<-disponiveis, initial <= n, rest<-notas_troco (n-initial) ]
+notas_troco n = [ initial:rest | initial<-disponiveis, initial <= n , rest<-notas_troco (n-initial) ]
+				--pega as notas disp   --se n tiver dado o valor --valor que falta - o restante
 
 -- Exercício 20
 
 -- gera todos os possíveis tabuleiros
 gera_tabuleiro :: Int -> Int -> [[Int]]
 gera_tabuleiro n cont
- | n == cont = [[]]
+ | n == cont = [[]] 
  | otherwise = [h:t | h<-[1..n], cont < n, t<-(gera_tabuleiro n (cont+1))]
 
 -- regras para rainhas
 rainhas_capturam :: (Int, Int) -> (Int, Int) -> Bool
 rainhas_capturam (x1,y1) (x2,y2)
- | x1 == x2 || y1 == y2 = True
- | abs (x1 - x2) == abs (y1 - y2) = True
- | otherwise = False
+ | x1 == x2 || y1 == y2 = True --mesma linha ou mesma coluna 
+ | abs (x1 - x2) == abs (y1 - y2) = True --diagonal 
+ | otherwise = False -- posição boa nao captura
 
 -- compara todas as rainhas em um tabuleiro
 compare_all :: [Int] -> Int -> Int -> Bool
 compare_all l i j
- | d1 /= d2 && rainhas_capturam d1 d2 = False
- | i == (length l) - 1 = True
- | j == (length l) - 1 = compare_all l (i+1) (i+1)
- | otherwise = compare_all l i (j+1)
+ | d1 /= d2 && rainhas_capturam d1 d2 = False --posição boa nao captura
+ | i == (length l) - 1 = True -- i= linhas 
+ | j == (length l) - 1 = compare_all l (i+1) (i+1) --o incremento é aqui
+ | otherwise = compare_all l i (j+1) --na recursão quando acabar os j's, vai incrementar o i tipo em c, com um for duplo
  where
-     d1 = (l !! i, i+1)
-     d2 = (l !! j, j+1)
+     d1 = (l !! i, i+1) --vai pegar o elemento e gerar uma dupla q é a posição no tabuleiro
+     d2 = (l !! j, j+1) 
+
 
 -- função principal
 nRainhas :: Int -> [[Int]]
